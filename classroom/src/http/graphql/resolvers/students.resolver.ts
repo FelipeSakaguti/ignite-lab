@@ -5,8 +5,6 @@ import { AuthorizationGuard } from "../../auth/authorization.guard";
 import { StudentService } from "../../../services/students.service";
 import { Student } from "../models/student";
 import { EnrollmentService } from "../../../services/enrollments.service";
-import { AuthUser, CurrentUser } from "../../auth/current-user";
-
 
 @Resolver(() => Student)
 export class StudentResolver {
@@ -15,13 +13,13 @@ export class StudentResolver {
         private enrollmentsService: EnrollmentService,
     ) { }
 
-    @Query(() => Student)
-    @UseGuards(AuthorizationGuard)
-    me(
-        @CurrentUser() user: AuthUser,
-    ) {
-        return this.studentsService.getStudentByAuthUserId(user.sub);
-    }
+    // @Query(() => Student)
+    // @UseGuards(AuthorizationGuard)
+    // me(
+    //     @CurrentUser() user: AuthUser,
+    // ) {
+    //     return this.studentsService.getStudentByAuthUserId(user.sub);
+    // }
 
     @Query(() => [Student])
     @UseGuards(AuthorizationGuard)
